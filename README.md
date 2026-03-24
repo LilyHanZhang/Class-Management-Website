@@ -46,7 +46,7 @@ To get this project up and running on your local machine, follow these steps:
 4.  **Open in Browser**
     The terminal will show a local URL, typically:
     `http://localhost:5173/`
-    Open this link in your web browser to use the application.
+    Open this link in your web browser or VS Code Simple Browser (Open the `Command Palette`, search for "Simple Browser: Show" and enter `http://localhost:5173/`) to use the application.
 
 ## How to Use
 
