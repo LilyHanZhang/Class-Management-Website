@@ -26,10 +26,9 @@ To get this project up and running on your local machine, follow these steps:
 1.  **Clone the Repository**
     Open your terminal or command prompt and run:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/LilyHanZhang/Class-Management-Website.git
     cd Class-Management-Website/scholar-sync
     ```
-    *(Note: Replace `<repository-url>` with the actual URL of this GitHub repository.)*
 
 2.  **Install Dependencies**
     Install the required npm packages:
