@@ -5,7 +5,7 @@ import { useApp } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 
 export const Dashboard = () => {
-  const { students, assignments, classes } = useApp();
+  const { students, assignments, classes, notifications } = useApp();
   const navigate = useNavigate();
 
   const stats = useMemo(() => {
@@ -39,6 +39,12 @@ export const Dashboard = () => {
     ];
   }, [students, assignments]);
 
+  const todaysClasses = useMemo(() => {
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const today = days[new Date().getDay()];
+    return classes.filter(c => c.schedule.days.includes(today));
+  }, [classes]);
+
   return (
     <div className="p-6 space-y-6">
       <h2 className="text-2xl font-bold text-gray-800">Dashboard</h2>
@@ -67,27 +73,18 @@ export const Dashboard = () => {
         <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-6">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Recent Activity</h3>
              <ul className="space-y-4">
-                <li className="flex items-start space-x-3 pb-3 border-b border-gray-50 last:border-0 last:pb-0">
-                    <div className="w-2 h-2 mt-2 rounded-full bg-blue-500 flex-shrink-0" />
-                    <div>
-                        <p className="text-gray-800 text-sm"> <span className="font-semibold">Alice Johnson</span> submitted <span className="font-medium">Physics Lab Report 1</span></p>
-                        <p className="text-xs text-gray-400 mt-1">2 hours ago</p>
-                    </div>
-                </li>
-                  <li className="flex items-start space-x-3 pb-3 border-b border-gray-50 last:border-0 last:pb-0">
-                    <div className="w-2 h-2 mt-2 rounded-full bg-green-500 flex-shrink-0" />
-                    <div>
-                        <p className="text-gray-800 text-sm"> <span className="font-semibold">Bob Smith</span> achieved <span className="font-medium">92%</span> in <span className="font-medium">Calculus Quiz</span></p>
-                         <p className="text-xs text-gray-400 mt-1">5 hours ago</p>
-                    </div>
-                </li>
-                <li className="flex items-start space-x-3">
-                    <div className="w-2 h-2 mt-2 rounded-full bg-amber-500 flex-shrink-0" />
-                    <div>
-                        <p className="text-gray-800 text-sm">New assignment <span className="font-medium">History Essay</span> created for <span className="font-medium">World History</span></p>
-                         <p className="text-xs text-gray-400 mt-1">Yesterday</p>
-                    </div>
-                </li>
+                {notifications.slice(0, 5).map((notification) => (
+                    <li key={notification.id} className="flex items-start space-x-3 pb-3 border-b border-gray-50 last:border-0 last:pb-0">
+                        <div className="w-2 h-2 mt-2 rounded-full bg-blue-500 flex-shrink-0" />
+                        <div>
+                            <p className="text-gray-800 text-sm">{notification.message}</p>
+                            <p className="text-xs text-gray-400 mt-1">{new Date(notification.timestamp).toLocaleTimeString()}</p>
+                        </div>
+                    </li>
+                ))}
+                {notifications.length === 0 && (
+                     <li className="text-gray-500 text-sm">No recent activity.</li>
+                )}
             </ul>
         </div>
         
@@ -95,14 +92,18 @@ export const Dashboard = () => {
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
              <h3 className="text-lg font-semibold text-gray-800 mb-4">Today's Schedule</h3>
              <div className="space-y-3">
-                {classes.slice(0, 3).map((cls) => (
-                    <div key={cls.id} className="flex items-center p-3 rounded-lg border-l-4 bg-gray-50" style={{ borderLeftColor: cls.color }}>
-                        <div className="flex-1">
-                            <p className="font-medium text-gray-900">{cls.title}</p>
-                            <p className="text-sm text-gray-500">{cls.schedule.time} • {cls.code}</p>
+                {todaysClasses.length > 0 ? (
+                    todaysClasses.map((cls) => (
+                        <div key={cls.id} className="flex items-center p-3 rounded-lg border-l-4 bg-gray-50" style={{ borderLeftColor: cls.color }}>
+                            <div className="flex-1">
+                                <p className="font-medium text-gray-900">{cls.title}</p>
+                                <p className="text-sm text-gray-500">{cls.schedule.time} • {cls.code}</p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                ) : (
+                    <p className="text-sm text-gray-500 text-center py-4">No classes scheduled for today.</p>
+                )}
             </div>
         </div>
       </div>

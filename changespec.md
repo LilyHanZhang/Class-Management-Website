@@ -1,3 +1,4 @@
 # Change To Be Made
-- The documents uploaded should be allowed to be downloaded from browser (like safari on mac) when i click the button, it still does not work now!!! 
-- please include the copyright information on the bottom of the website (my name is lily Zhang (张涵))
+## Dashboard Section
+- In today's schedule section, the courses displayed is not the courses taken place today? For example, today is Tuesday, however, only courses for Tuesday (Advanced Mathematics & Galaxy Physics) should be shown.
+- The recent activity section should match the notification? Display the actions that truly happened.

@@ -50,7 +50,7 @@ To get this project up and running on your local machine, follow these steps:
 
 ## How to Use
 
-1.  **Dashboard**: The landing page gives you an overview of your total students, class average, upcoming deadlines, and recent activity.
+1.  **Dashboard**: The landing page gives you an overview of your total students, class average, and recent activity.
 2.  **Roster**: Go here to add new students. Click "Add Student" to create a profile. You can also search for students or filter them by status. Scroll **right** to edit and delete students.
 3.  **Schedule**: Add your classes here. Click "Add Class" to define the course title, code, time, and days. Click on a class card to edit its details.
 4.  **Gradebook**:
