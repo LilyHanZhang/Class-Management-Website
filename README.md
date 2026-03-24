@@ -48,20 +48,14 @@ To get this project up and running on your local machine, follow these steps:
 3.  **Start the Development Server**
     Run the following command to start the application in development mode:
     ```bash
+    cd scholar-sync
     npm run dev
     ```
 
 4.  **Open in Browser**
-    The terminal will show a local URL, typically:
-    `http://localhost:5174/`
-    Open this link in your web browser.
-    You can also use the VS Code Simple Browser 
-    ```bash
-    cd scholar-sync
-    npm run dev
-    ```
-    You should see the `URL` like `http://localhost:5174/` in the terminal output.
-    Open the `Command Palette`, search for `Simple Browser: Show` and enter `URL` to use the application.
+    The terminal will show a local URL, typically: `http://localhost:5173/`
+    - Open this link in your web browser.
+    - You can also use the VS Code Simple Browser: Open the `Command Palette`, search for `Simple Browser: Show` and enter `URL` to use the application.
 
 ## How to Use
 
