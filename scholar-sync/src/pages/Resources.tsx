@@ -54,6 +54,32 @@ export const Resources = () => {
         }
     };
 
+    const handleDownload = (e: React.MouseEvent, doc: DocFile) => {
+        // Prevent default navigation
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Check if it's a base64 string
+        if (doc.url.startsWith('data:')) {
+            const link = document.createElement('a');
+            link.href = doc.url;
+            link.download = doc.name;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } else {
+             // Fallback for object URLs or other links
+             const link = document.createElement('a');
+             link.href = doc.url;
+             link.download = doc.name;
+             // target blank might help with some browser restrictions
+             link.target = "_blank";
+             document.body.appendChild(link);
+             link.click();
+             document.body.removeChild(link);
+        }
+    };
+
     const formatSize = (bytes: number) => {
         if (bytes === 0) return '0 Bytes';
         const k = 1024;
@@ -132,15 +158,13 @@ export const Resources = () => {
                                     >
                                         <Trash2 size={20} />
                                     </button>
-                                    <a 
-                                        href={doc.url} 
-                                        download={doc.name}
+                                    <button
+                                        onClick={(e) => handleDownload(e, doc)}
                                         className="p-2 text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
                                         title="Download"
-                                        onClick={(e) => e.stopPropagation()}
                                     >
                                         <Download size={20} />
-                                    </a>
+                                    </button>
                                 </div>
                             </li>
                         ))}
