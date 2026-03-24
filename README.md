@@ -31,10 +31,19 @@ To get this project up and running on your local machine, follow these steps:
     ```
 
 2.  **Install Dependencies**
-    Install the required npm packages:
+    Install the required npm packages. This project relies on several key libraries including React, React Router, Tailwind CSS, and Lucide React.
+    
+    Run the following command to automatically install all dependencies listed in `package.json`:
     ```bash
     npm install
     ```
+    
+    *Key packages that will be installed:*
+    *   `react`, `react-dom`: Core framework.
+    *   `react-router-dom`: For navigation and routing.
+    *   `tailwindcss`, `postcss`, `autoprefixer`: For styling.
+    *   `lucide-react`: For the icon set.
+    *   `clsx`, `tailwind-merge`: For dynamic class name management.
 
 3.  **Start the Development Server**
     Run the following command to start the application in development mode:
@@ -45,7 +54,14 @@ To get this project up and running on your local machine, follow these steps:
 4.  **Open in Browser**
     The terminal will show a local URL, typically:
     `http://localhost:5173/`
-    Open this link in your web browser or VS Code Simple Browser (Open the `Command Palette`, search for "Simple Browser: Show" and enter `http://localhost:5173/`) to use the application.
+    Open this link in your web browser.
+    You can also use the VS Code Simple Browser 
+    ```bash
+    cd scholar-sync
+    npm run dev
+    ```
+    You should see the URL like `http://localhost:5173/` in the terminal output.
+    Open the `Command Palette`, search for `Simple Browser: Show` and enter `http://localhost:5173/` to use the application.
 
 ## How to Use
 
