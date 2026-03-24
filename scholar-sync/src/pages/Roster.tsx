@@ -30,6 +30,7 @@ export const Roster = () => {
     });
 
     const handleDelete = (id: string) => {
+        // eslint-disable-next-line no-restricted-globals
         if (confirm('Are you sure you want to delete this student?')) {
             deleteStudent(id);
         }

@@ -53,15 +53,15 @@ To get this project up and running on your local machine, follow these steps:
 
 4.  **Open in Browser**
     The terminal will show a local URL, typically:
-    `http://localhost:5173/`
+    `http://localhost:5174/`
     Open this link in your web browser.
     You can also use the VS Code Simple Browser 
     ```bash
     cd scholar-sync
     npm run dev
     ```
-    You should see the URL like `http://localhost:5173/` in the terminal output.
-    Open the `Command Palette`, search for `Simple Browser: Show` and enter `http://localhost:5173/` to use the application.
+    You should see the `URL` like `http://localhost:5174/` in the terminal output.
+    Open the `Command Palette`, search for `Simple Browser: Show` and enter `URL` to use the application.
 
 ## How to Use
 

@@ -49,6 +49,7 @@ export const Resources = () => {
     };
 
     const handleDeleteDocument = (id: string) => {
+        // eslint-disable-next-line no-restricted-globals
         if (confirm('Are you sure you want to delete this document?')) {
             deleteDocument(id);
         }
@@ -59,21 +60,49 @@ export const Resources = () => {
         e.preventDefault();
         e.stopPropagation();
 
-        // Check if it's a base64 string
+        // Robust base64 to blob conversion that works in Safari
         if (doc.url.startsWith('data:')) {
-            const link = document.createElement('a');
-            link.href = doc.url;
-            link.download = doc.name;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            try {
+                // Split data URL into metadata and body
+                const arr = doc.url.split(',');
+                const mime = arr[0].match(/:(.*?);/)?.[1] || 'application/octet-stream';
+                const bstr = atob(arr[1]);
+                let n = bstr.length;
+                const u8arr = new Uint8Array(n);
+                
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                
+                const blob = new Blob([u8arr], { type: mime });
+                const blobUrl = URL.createObjectURL(blob);
+                
+                // Construct the link for download
+                const link = document.createElement('a');
+                link.href = blobUrl;
+                link.download = doc.name;
+                link.style.display = 'none'; // Ensure it's not visible
+                document.body.appendChild(link);
+                
+                // Trigger click - Timeout helps Safari sometimes
+                setTimeout(() => {
+                    link.click();
+                    document.body.removeChild(link);
+                    // Revoke only after a delay to ensure download starts
+                    setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
+                }, 0);
+
+            } catch (error) {
+                console.error("Download error:", error);
+                alert("Download failed. Please try again.");
+            }
         } else {
-             // Fallback for object URLs or other links
+             // Fallback for non-data URLs
              const link = document.createElement('a');
              link.href = doc.url;
              link.download = doc.name;
-             // target blank might help with some browser restrictions
              link.target = "_blank";
+             link.style.display = 'none';
              document.body.appendChild(link);
              link.click();
              document.body.removeChild(link);

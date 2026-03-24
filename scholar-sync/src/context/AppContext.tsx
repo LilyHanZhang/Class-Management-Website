@@ -94,7 +94,15 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     }, [user]);
 
     useEffect(() => {
-        localStorage.setItem('documents', JSON.stringify(documents));
+        try {
+            localStorage.setItem('documents', JSON.stringify(documents));
+        } catch (error) {
+            console.error("Failed to save documents to localStorage", error);
+            // If quota exceeded, we might want to notify user or clear some old data
+            // For now, simpler error handling to prevent crash
+            addNotification("Storage limit reached! Cannot save this document.");
+            // Revert state if necessary or just let it fail silently but safely
+        }
     }, [documents]);
 
     useEffect(() => {
