@@ -75,3 +75,19 @@ To get this project up and running on your local machine, follow these steps:
 - Vite
 - Lucide React (Icons)
 
+## Website Outlook
+![dashboard](./Website_Outlook/1dashboard.png)
+![notification](./Website_Outlook/2notification.png)
+![roster overview](./Website_Outlook/3_1roster.png)
+![roster edit delete](./Website_Outlook/3_2roster_edit_delete_stu.png)
+![add student](./Website_Outlook/3_3add_stu.png)
+![class schedule](./Website_Outlook/4_1class_schedule.png)
+![class schedule edit](./Website_Outlook/4_2class_schedule_edit.png)
+![gradebook](./Website_Outlook/5_1gradebook.png)
+![gradebook add exam](./Website_Outlook/5_2gradebook_addexam.png)
+![upload download](./Website_Outlook/6_1upload_download_file.png)
+![upload file detail](./Website_Outlook/6_2_upload_file_detail.png)
+![teacher profile](./Website_Outlook/7teacher_profile.png)
+![dark mode](./Website_Outlook/8dark_mode.png)
+![search tool](./Website_Outlook/9searchtool.png)
+
